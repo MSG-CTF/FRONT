@@ -1,0 +1,80 @@
+// Claude.md "공통 규약" 절의 Enum 사전을 그대로 옮긴 것.
+// 백엔드가 값을 추가/변경하면 이 파일도 같이 업데이트할 것.
+
+export const ROLE = {
+  PARTICIPANT: "PARTICIPANT",
+  ADMIN: "ADMIN",
+};
+
+export const DIFFICULTY = {
+  EASY: "EASY",
+  MEDIUM: "MEDIUM",
+  HARD: "HARD",
+};
+
+export const CATEGORY = {
+  WEB: "WEB",
+  PWN: "PWN",
+  REV: "REV",
+  CRYPTO: "CRYPTO",
+  FORENSIC: "FORENSIC",
+  MISC: "MISC",
+};
+
+export const INSTANCE_STATUS = {
+  REQUESTED: "REQUESTED",
+  SCHEDULING: "SCHEDULING",
+  PROVISIONING: "PROVISIONING",
+  RUNNING: "RUNNING",
+  RESTARTING: "RESTARTING",
+  RESETTING: "RESETTING",
+  STOPPING: "STOPPING",
+  STOPPED: "STOPPED",
+  FAILED: "FAILED",
+  EXPIRED: "EXPIRED",
+  CLEANUP_PENDING: "CLEANUP_PENDING",
+  CLEANED: "CLEANED",
+};
+
+// "활성(active)" / "종료(terminal)" 분류 — Claude.md "인스턴스 상태" 참고.
+// host/port/expires_at/remaining_seconds는 RUNNING일 때만 유효.
+export const ACTIVE_INSTANCE_STATUSES = [
+  INSTANCE_STATUS.REQUESTED,
+  INSTANCE_STATUS.SCHEDULING,
+  INSTANCE_STATUS.PROVISIONING,
+  INSTANCE_STATUS.RUNNING,
+  INSTANCE_STATUS.RESTARTING,
+  INSTANCE_STATUS.RESETTING,
+  INSTANCE_STATUS.STOPPING,
+];
+
+export const TERMINAL_INSTANCE_STATUSES = [
+  INSTANCE_STATUS.STOPPED,
+  INSTANCE_STATUS.FAILED,
+  INSTANCE_STATUS.EXPIRED,
+  INSTANCE_STATUS.CLEANED,
+];
+
+export const MILEAGE_TYPE = {
+  CHALLENGE_SOLVE: "CHALLENGE_SOLVE",
+  START_BONUS: "START_BONUS",
+  ROULETTE: "ROULETTE",
+  KOTH_REWARD: "KOTH_REWARD",
+  ADMIN_GRANT: "ADMIN_GRANT",
+  REFUND: "REFUND",
+  PURCHASE: "PURCHASE",
+  ADMIN_DEDUCT: "ADMIN_DEDUCT",
+};
+
+export const CELL_TYPE = {
+  START: "START",
+  CHALLENGE: "CHALLENGE",
+  CHANCE: "CHANCE",
+  AIRPORT: "AIRPORT",
+  QUARANTINE: "QUARANTINE",
+  ROULETTE: "ROULETTE",
+};
+
+// 프론트는 알 수 없는 상태값을 받으면 "준비 중"으로 처리하고 폴링을 계속한다.
+// (Claude.md "상태 전이" 절 참고 — scheduler에 상태가 추가돼도 화면이 깨지지 않게)
+export const UNKNOWN_INSTANCE_STATUS_LABEL = "준비 중";
