@@ -78,3 +78,19 @@ export const CELL_TYPE = {
 // 프론트는 알 수 없는 상태값을 받으면 "준비 중"으로 처리하고 폴링을 계속한다.
 // (Claude.md "상태 전이" 절 참고 — scheduler에 상태가 추가돼도 화면이 깨지지 않게)
 export const UNKNOWN_INSTANCE_STATUS_LABEL = "준비 중";
+
+// Claude.md "인스턴스 상태" 표의 "참가자 화면 문구" 열을 그대로 옮긴 것.
+// 모르는 상태값은 INSTANCE_STATUS_LABEL[status]가 undefined이므로
+// UNKNOWN_INSTANCE_STATUS_LABEL로 폴백해서 쓸 것.
+export const INSTANCE_STATUS_LABEL = {
+  [INSTANCE_STATUS.REQUESTED]: "요청 접수됨",
+  [INSTANCE_STATUS.SCHEDULING]: "준비 중",
+  [INSTANCE_STATUS.PROVISIONING]: "준비 중",
+  [INSTANCE_STATUS.RUNNING]: "RUNNING",
+  [INSTANCE_STATUS.RESTARTING]: "재시작 중",
+  [INSTANCE_STATUS.RESETTING]: "초기화 중",
+  [INSTANCE_STATUS.STOPPING]: "종료 중",
+  [INSTANCE_STATUS.STOPPED]: "종료됨",
+  [INSTANCE_STATUS.FAILED]: "오류 — 다시 시도",
+  [INSTANCE_STATUS.EXPIRED]: "시간 만료",
+};

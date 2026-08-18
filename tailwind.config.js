@@ -1,3 +1,5 @@
+import containerQueries from "@tailwindcss/container-queries";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
@@ -6,59 +8,22 @@ export default {
       colors: {
         "auth-text": "#613d15",
         "auth-bg": "#f9eeee",
+        // 문제 상세 페이지(challenge detail) 팔레트 — Figma node 104:459.
+        "detail-muted": "#d6cccc", // KOTH / 1st 배지 라벨
+        "detail-solved": "#6c8e4a", // SOLVED 배지 라벨
+        "detail-size": "#8a5e2e", // 첨부파일 용량(MB) 텍스트
+        "detail-points": "#d38e25", // 포인트 값
+        "detail-console": "#e4dbd1", // 인스턴스 접속 URL 텍스트
       },
       fontFamily: {
-        "auth-label": ['"IM Fell English"', "ui-serif", "serif"],
-      },
-      fontSize: {
-        // 36px label size on a 1920px-wide design, expressed as a
-        // container-query width unit so it scales with the screen.
-        "auth-label": ["1.875cqw", { lineHeight: "normal" }],
-      },
-      // Figma px coordinates (1920x1080 canvas) converted to % of the
-      // viewport so the layout is fluid. Keys map to Tailwind's
-      // inset/width/height scales -> classes like `top-card-top`,
-      // `left-card-left`, `w-card`, `h-card`.
-      inset: {
-        "card-left": "19.948%",
-        "card-top": "0.926%",
-        // Vertical midpoint between the card's top edge (card-top 0.926%)
-        // and the username input (username-top 42.130%) — the empty
-        // header margin above the input fields. Paired with Logo.jsx's
-        // left-1/2 + -translate-x-1/2 -translate-y-1/2 so the logo stays
-        // centered in that margin regardless of its actual rendered size.
-        "logo-top": "21.528%",
-        "username-left": "32.396%",
-        "username-top": "42.130%",
-        "password-left": "32.604%",
-        "password-top": "52.593%",
-        "login-button-left": "27.656%",
-        "login-button-top": "69.167%",
-      },
-      width: {
-        card: "60.729%",
-        // Visible-content width of logo.png (313px, after trimming the
-        // asset's transparent padding) as a % of viewport width — height
-        // is "auto" + a fixed aspect-ratio token below so the element
-        // scales uniformly (no stretch) as the screen resizes.
-        logo: "16.302%",
-        "auth-input": "22.396%",
-        "login-button": "44.531%",
-      },
-      height: {
-        card: "95%",
-        logo: "auto",
-        "auth-input": "8.148%",
-        // % of viewport height, same basis as `card`'s height (95%) — so
-        // the button always tracks the card artwork's own vertical
-        // stretch and stays inside the frame drawn on the card, instead
-        // of drifting out of it at non-16:9 aspect ratios.
-        "login-button": "9.815%",
-      },
-      aspectRatio: {
-        logo: "313 / 226",
+        "im-fell": ['"IM Fell English"', "ui-serif", "serif"],
+        "kode-mono": ['"Kode Mono"', "ui-monospace", "monospace"],
+        "inria-serif": ['"Inria Serif"', "ui-serif", "serif"],
       },
     },
   },
-  plugins: [],
+  // @container / cqw 단위는 코어 플러그인이 아니라 이 플러그인이 있어야 실제
+  // CSS(container-type 등)로 만들어진다 — 빠져 있으면 `@container` 클래스가
+  // 조용히 아무 효과 없는 죽은 클래스가 되어 cqw 폰트 크기가 전부 깨진다.
+  plugins: [containerQueries],
 };
